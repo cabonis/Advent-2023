@@ -1,0 +1,9 @@
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\bin\Debug\input.txt
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\bin\Debug\Day 1.exe.config
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\bin\Debug\Day 1.exe
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\bin\Debug\Day 1.pdb
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\obj\Debug\Day 1.csproj.AssemblyReference.cache
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\obj\Debug\Day 1.csproj.SuggestedBindingRedirects.cache
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\obj\Debug\Day 1.csproj.CoreCompileInputs.cache
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\obj\Debug\Day 1.exe
+C:\Users\Christopher\source\repos\Advent 2023\Day 1\obj\Debug\Day 1.pdb
