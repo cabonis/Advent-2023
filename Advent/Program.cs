@@ -15,9 +15,9 @@ namespace Advent
 			try
 			{
 				string[] lines = File.ReadAllLines(path);
-				Type type = Type.GetType($"Advent.{dayName}");
+				Type type = Type.GetType($"Advent.{dayName}.{dayName}");
 				IDay day = (IDay)Activator.CreateInstance(type);
-				int result = day.DoWork(lines);
+				string result = day.DoWork(lines);
 				Console.WriteLine(result);
 			}
 			catch (Exception ex)

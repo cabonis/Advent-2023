@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Advent;
 
-namespace Advent
+namespace Advent.Day4
 {
 	internal class Day4 : IDay
 	{
-		public int DoWork(string[] input)
+		public string DoWork(string[] input)
 		{
 			List<Card> cards = new List<Card>();
 			input.ToList().ForEach(l => cards.Add(new Card(l)));
@@ -16,7 +17,7 @@ namespace Advent
 			// Part 1
 			//int score = cards.Select(c => c.GetWinnerScore()).Sum();
 
-			return cards.Select(c => c.Play(cards)).Sum();
+			return cards.Select(c => c.Play(cards)).Sum().ToString();
 		}
 	}
 

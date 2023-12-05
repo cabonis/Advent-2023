@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Advent;
 
-namespace Advent
+namespace Advent.Day2
 {
 	internal class Day2 : IDay
 	{
-		public int DoWork(string[] input)
+		public string DoWork(string[] input)
 		{
 			List<Game> games = new List<Game>();
 			foreach (string line in input)
@@ -23,7 +24,7 @@ namespace Advent
 			//Console.WriteLine(validSum);
 
 			int sumPowers = games.Select(g => g.PowMinSet()).Sum();
-			return sumPowers;
+			return sumPowers.ToString();
 		}
 	}
 

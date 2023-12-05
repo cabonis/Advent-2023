@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Advent;
 
-namespace Advent
+namespace Advent.Day1
 {
 	internal class Day1 : IDay
 	{
-		public int DoWork(string[] input)
+		public string DoWork(string[] input)
 		{
 			int sum = 0;
 
@@ -19,7 +20,7 @@ namespace Advent
 				sum += num;
 			}
 
-			return sum;
+			return sum.ToString();
 		}
 
 		private static int GetNumber(string line)

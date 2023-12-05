@@ -8,6 +8,6 @@ namespace Advent
 {
 	internal interface IDay
 	{
-		public int DoWork(string[] input);
+		public string DoWork(string[] input);
 	}
 }

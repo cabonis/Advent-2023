@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Advent;
 
-namespace Advent
+namespace Advent.Day3
 {
 	internal class Day3 : IDay
 	{
-		public int DoWork(string[] input)
+		public string DoWork(string[] input)
 		{
 			Schematic schematic = new Schematic(input);
 
@@ -19,7 +20,7 @@ namespace Advent
 
 			int sum = schematic.GetGearsTotal();
 			
-			return sum;
+			return sum.ToString();
 		}
 
 		public class Schematic
