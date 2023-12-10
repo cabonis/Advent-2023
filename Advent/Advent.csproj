@@ -61,6 +61,7 @@
     <Compile Include="Day6\Day6.cs" />
     <Compile Include="Day7\Day7.cs" />
     <Compile Include="Day8\Day8.cs" />
+    <Compile Include="Day9\Day9.cs" />
     <Compile Include="IDay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +93,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Day8\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Day9\input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
