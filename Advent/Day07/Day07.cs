@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Advent.Day7
 {
-	internal class Day7 : IDay
+	internal class Day07 : IDay
 	{
 		public string DoWork(string[] input)
 		{

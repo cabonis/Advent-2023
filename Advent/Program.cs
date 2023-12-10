@@ -8,7 +8,7 @@ namespace Advent
 	{
 		static void Main(string[] args)
 		{		
-			string dayName = $"Day{DateTime.Now.Date.Day}";
+			string dayName = $"Day{DateTime.Now.Date.Day.ToString("00")}";
 
 			string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), dayName, @"input.txt");
 

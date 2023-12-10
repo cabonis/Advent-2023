@@ -7,7 +7,7 @@ using Advent;
 
 namespace Advent.Day4
 {
-	internal class Day4 : IDay
+	internal class Day04 : IDay
 	{
 		public string DoWork(string[] input)
 		{

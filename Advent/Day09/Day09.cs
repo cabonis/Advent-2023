@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Advent.Day9
 {
-	internal class Day9 : IDay
+	internal class Day09 : IDay
 	{
 		public string DoWork(string[] input)
 		{
