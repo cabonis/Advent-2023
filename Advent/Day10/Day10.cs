@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Advent.Day10
@@ -23,7 +25,7 @@ namespace Advent.Day10
 
 		public class Map
 		{
-			private static HashSet<NodeType> LeftNodes = new HashSet<NodeType>{ NodeType.EastWest, NodeType.NorthWest, NodeType.SouthWest, NodeType.Start };
+			private static HashSet<NodeType> LeftNodes = new HashSet<NodeType> { NodeType.EastWest, NodeType.NorthWest, NodeType.SouthWest, NodeType.Start };
 			private static HashSet<NodeType> RightNodes = new HashSet<NodeType> { NodeType.EastWest, NodeType.NorthEast, NodeType.SouthEast, NodeType.Start };
 			private static HashSet<NodeType> UpNodes = new HashSet<NodeType> { NodeType.NorthSouth, NodeType.NorthEast, NodeType.NorthWest, NodeType.Start };
 			private static HashSet<NodeType> DownNodes = new HashSet<NodeType> { NodeType.NorthSouth, NodeType.SouthEast, NodeType.SouthWest, NodeType.Start };
@@ -38,13 +40,13 @@ namespace Advent.Day10
 				void TryAddNode(int x, int y, HashSet<NodeType> nodeTypes)
 				{
 					Node n = new Node(x, y, _nodes[x, y]);
-					if(nodeTypes.Contains(n.NodeType))
+					if (nodeTypes.Contains(n.NodeType))
 						adjacent.Add(n);
 				}
 
 				// Left
 				if (LeftNodes.Contains(current.NodeType) && current.X > 0)
-					TryAddNode(current.X - 1, current.Y, RightNodes);				
+					TryAddNode(current.X - 1, current.Y, RightNodes);
 
 				// Right
 				if (RightNodes.Contains(current.NodeType) && current.X < _nodes.GetLength(0) - 1)
@@ -60,6 +62,30 @@ namespace Advent.Day10
 
 				return adjacent;
 			}
+
+			private void UpdateStartPipe()
+			{
+				List<Node> adjacent = GetAdjacent(_start);
+
+				if (adjacent.Count != 2)
+					throw new Exception();
+
+				foreach (NodeType nodeType in Enum.GetValues(typeof(NodeType)))
+				{
+					if (nodeType == NodeType.Start || nodeType == NodeType.Ground)
+						continue;
+
+					_nodes[_start.X, _start.Y] = nodeType;
+
+					if (GetAdjacent(adjacent[0]).Contains(_start) && GetAdjacent(adjacent[1]).Contains(_start))
+					{
+						return;
+					}
+				}
+
+				throw new Exception();
+			}
+		
 
 			public Map(string[] input)
 			{
@@ -101,49 +127,34 @@ namespace Advent.Day10
 			public int Traverse2()
 			{
 				List<Node> loop = Traverse();
-				int outsideLoop = 0;
 
+				UpdateStartPipe();
 
-				bool isInside = false;
-				bool isExited = false;
+				char GetNode(int x, int y)
+				{
+					Node node = new Node(x, y, _nodes[x, y]);
+					return loop.Contains(node) ? (char)node.NodeType : (char)NodeType.Ground;
+				}
 
-				for (int i = 0; i < _nodes.GetLength(0); i++)
-					for (int j = 0; j < _nodes.GetLength(1); j++)
+				int inside = 0;
+
+				Regex regex = new Regex("\\||F-*J|L-*7", RegexOptions.Compiled);
+
+				for (int i = 0; i < _nodes.GetLength(1); i++)
+				{
+					var row = string.Join("", Enumerable.Range(0, _nodes.GetLength(0)).Select(x => GetNode(x, i)).ToArray());
+
+					string[] sections = regex.Split(row);
+					for (int j = 0; j < sections.Length; j++)
 					{
-						Node node = new Node(i, j, _nodes[j, i]);
-						NodeType nodeType = loop.Contains(node) ? node.NodeType : NodeType.Ground;
+						if (j % 2 == 0)
+							continue;
 
-						if (isExited)
-						{
-							isExited = isInside = false;
-						}
-
-						switch (nodeType)
-						{
-							case NodeType.NorthEast:
-							case NodeType.SouthEast:
-							case NodeType.Start:
-								isInside = true;
-								break;
-							case NodeType.NorthWest:
-							case NodeType.SouthWest:
-								isExited = true;
-								break;
-							case NodeType.NorthSouth:
-								if (!isInside)
-									isInside = true;
-								else
-									isExited = true;
-								break;
-							default:
-								break;
-						}
-
-						if (!isInside)
-							outsideLoop++;
+						inside += sections[j].Count(c => c == '.');
 					}
+				}
 
-				return (_nodes.GetLength(0) * _nodes.GetLength(1)) - loop.Count - outsideLoop;
+				return inside;
 			}
 
 		}
